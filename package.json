@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/mtngz/movie_api/issues"
   },
-  "homepage": "https://github.com/mtngz/movie_api#readme"
+  "homepage": "https://github.com/mtngz/movie_api#readme",
+  "dependencies": {
+    "lodash": "^4.17.20"
+  }
 }
