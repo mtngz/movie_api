@@ -1,10 +1,27 @@
 const express = require('express'),
-    morgan = require("morgan");
+    morgan = require("morgan"),
+    bodyParser = require("body-parser"),
+    methodOverride = require("method-override");
 const app = express();
 
+// express.static for documentation.html
 app.use(express.static("public"));
 
+// LOG
 app.use(morgan('common'));
+
+// Error
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+  
+  app.use(bodyParser.json());
+  app.use(methodOverride());
+  
+  app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+  });
 
 let topMovies = [
     {title: "Iron Man", director: "Jon Favreau"},
