@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+app.use(express.static("public"));
+
 let topMovies = [
     {title: "Iron Man", director: "Jon Favreau"},
     {title: "The Incredible Hulk", director: "Louis Leterrier"},
