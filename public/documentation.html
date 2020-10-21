@@ -4,15 +4,92 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>DOCUMENTATION</title>
+    <style>table, th, td {border: 1px solid black;}</style>
   </head>
 
   <body>
-    <h1>Objective</h1>
-    <h3>
+    <header>
+      <h1>myFlix Project: Marvelix</h1>
+      <h2>Create a REST API with Node.js</h2>
+    </header>
+    <h3>Objective</h3>
+    <p>
       To build the server-side component of a “movies” web application. The web
       application will provide users with access to information about different
       movies, directors, and genres. Users will be able to sign up, update their
       personal information, and create a list of their favorite movies.
-    </h3>
+    </p>
+    <table>
+      <tr>
+        <th>Request</th>
+        <th>URL Endpoint</th>
+        <th>HTTP Method</th>
+        <th>Request body data format</th>
+        <th>Response body data format</th>
+      </tr>
+      <tr>
+        <td>Get a list of all movies</td>
+        <td>/movies</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>A JSON object holding data about all movies</td>
+      </tr>
+      <tr>
+        <td>Get data about a single movie by title; use %20 for spaces</td>
+        <td>/movies/[title]</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>A JSON object holding data about a single movie, containing title, description, phase, director, image URL.<br><br>Example:<br>{<br>title: "Iron Man",<br>moviedescription: "Iron Man is a 2008 American superhero film based on the Marvel Comics character.",<br>director: {<br>dirname: "John Favreau",<br>bio: "Jonathan Favreau is an American actor, director, producer, and screenwriter.",<br>born: "1966",<br>died: ""<br>},<br>phase: {<br>number: "one",<br>phasedescription: "Phase One of the Marvel Cinematic Universe (MCU) is a series of American superhero films produced by Marvel Studios based on characters that appear in publications by Marvel Comics. The phase began in 2008 with the release of Iron Man and concluded in 2012 with the release of Marvel's The Avengers."<br>},<br>"imagepath": "ironman.png",<br>"featured": true<br>}</td>
+      </tr>
+      <tr>
+        <td>Get data about the phase by title; use %20 for spaces</td>
+        <td>/movies/phase/[phase]</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>A JSON object holding data about the pase, containing number, phasedescription.<br><br>Example:<br>{<br>phase: {<br>number: "one",<br>phasedescription: "Phase One of the Marvel Cinematic Universe (MCU) is a series of American superhero films produced by Marvel Studios based on characters that appear in publications by Marvel Comics. The phase began in 2008 with the release of Iron Man and concluded in 2012 with the release of Marvel's The Avengers."<br>}<br>}</td>
+      </tr>
+      <tr>
+        <td>Get data about a director by name; use %20 for spaces</td>
+        <td>/movies/directors/[name]</td>
+        <td>GET</td>
+        <td>None</td>
+        <td>A JSON object holding data about a director, containing name, bio, birth year, death year.<br><br>Example:<br>{<br>director: {<br>dirname: "John Favreau",<br>bio: "Jonathan Favreau is an American actor, director, producer, and screenwriter.",<br>born: "1966",<br>died: ""<br>}<br>}</td>
+      </tr>
+      <tr>
+        <td>Add new user</td>
+        <td>/users</td>
+        <td>POST</td>
+        <td>A JSON object holding data about the user to add, structured like:<br>{<br>username: "dummy",<br>email: "dummy@test.com",<br>password: "test"<br>}</td>
+        <td>A JSON object holding data about the user that was added, including an userid and favorites.<br><br>Example:<br>{<br>username: "dummy",<br>email: "dummy@test.com",<br>password: "test",<br>userid: "1",<br>favorites: [],<br>}</td>
+      </tr>
+      <tr>
+        <td>Update the user info (username)</td>
+        <td>/users/[userid]/[username]</td>
+        <td>PUT</td>
+        <td>None</td>
+        <td>A text message indicating the username of a user with a userid was updated.</td>
+      </tr>
+      <tr>
+        <td>Add a movie to the user's favorites</td>
+        <td>/users/[userid]/favorites/[title]</td>
+        <td>PUT</td>
+        <td>None</td>
+        <td>A text message indicating the movie was added to the favorites of the user.</td>
+      </tr>
+      <tr>
+        <td>Delete a movie from the user's favorites</td>
+        <td>/users/[userid]/favorites/[title]</td>
+        <td>DELETE</td>
+        <td>None</td>
+        <td>A text message indicating the movie was deleted from the favorites of the user.</td>
+      </tr>
+      <tr>
+        <td>Delete a from the database</td>
+        <td>/users/[userid]</td>
+        <td>DELETE</td>
+        <td>None</td>
+        <td>A text message indicating the user was deleted from the database.</td>
+      </tr>
+    </table>
   </body>
 </html>
