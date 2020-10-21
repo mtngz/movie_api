@@ -13,17 +13,17 @@ app.use(morgan('common'));
 // Error
 app.use(bodyParser.urlencoded({
     extended: true
-  }));
-  
-  app.use(bodyParser.json());
-  app.use(methodOverride());
-  
-  app.use((err, req, res, next) => {
+}));
+
+app.use(bodyParser.json());
+app.use(methodOverride());
+
+app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
-  });
+});
 
-let topMovies = [
+let movies = [
     {title: "Iron Man", director: "Jon Favreau"},
     {title: "The Incredible Hulk", director: "Louis Leterrier"},
     {title: "Iron Man 2", director: "Jon Favreau"},
@@ -55,8 +55,49 @@ app.get("/", (req, res) => {
     res.send("Welcome to the movie app!");
 });
 
+// Get a list of data about all movies
 app.get("/movies", (req, res) => {
-    res.json(topMovies);
+    res.send('Successful GET request returning data on all movies');
+});
+
+// Get data about a single movie, by title
+app.get('/movies/:title', (req, res) => {
+    res.send('Successful GET request returning data on movie title: ' + req.params.title);
+});
+
+// Get data about a phase by title
+app.get('/movies/phase/:phase', (req, res) => {
+    res.send('Successful GET request returning data on phase: ' + req.params.phase);
+});
+
+// Get data about a director by name
+app.get('/movies/directors/:name', (req, res) => {
+    res.send('Successful GET request returning data on director: ' + req.params.name);
+});
+
+// Post new user registration
+app.post('/users', (req, res) => {
+    res.send('Successful POST request registering new user');
+});
+
+// Put updates to user information
+app.put('/users/:userid/:username', (req, res) => {
+    res.send('Successful PUT request updating user information username to ' + req.params.username + ' for user ' + req.params.userid);
+});
+
+  // Put new movie to user list of favorite movies
+app.put('/users/:userid/favorites/:title', (req, res) => {
+    res.send('Successful PUT request adding movie with title ' + req.params.title + ' to favorite movie list of user ' + req.params.userid);
+});
+
+  // Delete a movie from list of user's favorite movies
+app.delete('/users/:userid/favorites/:title', (req, res) => {
+    res.send('Successful DELETE request removing movie with title ' + req.params.title + ' from favorite movie list of user ' + req.params.userid);
+});
+
+  // Deletes a user from registration database
+app.delete('/users/:userid', (req, res) => {
+    res.send('Successful DELETE request removing user ' + req.params.userid + ' from database');
 });
 
 // listen for requests
