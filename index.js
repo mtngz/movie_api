@@ -95,6 +95,18 @@ app.post("/users", (req, res) => {
     });
 });
 
+// Get all Users
+app.get("/users", (req, res) => {
+  Users.find()
+    .then((users) => {
+      res.status(201).json(users);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
+});
+
 // Put updates to user information
 app.put("/users/:userid/:username", (req, res) => {
   res.send(
