@@ -1,8 +1,15 @@
 const express = require('express'),
     morgan = require("morgan"),
+    mongoose = require("mongoose"),
+    Models = require("./models.js"),
     bodyParser = require("body-parser"),
     methodOverride = require("method-override");
-const app = express();
+const app = express(),
+    Movies = Models.Movie,
+    Users = Models.User;
+
+// Connect Mongoose to DB to allow CRUD operations within REST API
+mongoose.connect("mongodb://localhost:27017/myFlixDB", { useNewUrlParser: true, useUnifiedTopology: true});
 
 // express.static for documentation.html
 app.use(express.static("public"));
@@ -22,32 +29,6 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
-
-let movies = [
-    {title: "Iron Man", director: "Jon Favreau"},
-    {title: "The Incredible Hulk", director: "Louis Leterrier"},
-    {title: "Iron Man 2", director: "Jon Favreau"},
-    {title: "Thor", director: "Kenneth Branagh"},
-    {title: "Captain America: The First Avenger", director: "Joe Johnston"},
-    {title: "Marvel's The Avengers", director: "Joss Whedon"},
-    {title: "Iron Man 3", director: "Shane Black"},
-    {title: "Thor: The Dark World", director: "Alan Taylor"},
-    {title: "Captain America: The Winter Soldier", director: "Anthony and Joe Russo"},
-    {title: "Guardians of the Galaxy", director: "James Gunn"},
-    {title: "Avengers: Age of Ultron", director: "Joss Whedon"},
-    {title: "Ant-Man", director: "Peyton Reed"},
-    {title: "Captain America: Civil War", director: "Anthony and Joe Russo"},
-    {title: "Doctor Strange", director: "Scott Derrickson"},
-    {title: "Guardians of the Galaxy Vol. 2", director: "James Gunn"},
-    {title: "Spider-Man: Homecoming", director: "Jon Watts"},
-    {title: "Thor: Ragnarok", director: "Taika Waititi"},
-    {title: "Black Panther", director: "Ryan Coogler"},
-    {title: "Avengers: Infinity War", director: "Anthony and Joe Russo"},
-    {title: "Ant-Man and the Wasp", director: "Peyton Reed"},
-    {title: "Captain Marvel", director: "Anna Boden and Ryan Fleck"},
-    {title: "Avengers: Endgame", director: "Anthony and Joe Russo"},
-    {title: "Spider-Man: Far From Home", director: "Jon Watts"},
-];
 
 // GET requests
 
