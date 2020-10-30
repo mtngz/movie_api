@@ -163,12 +163,21 @@ app.post("/users/:Username/Movies/:MovieID", (req, res) => {
 });
 
 // Delete a movie from list of user's favorite movies
-app.delete("/users/:userid/favorites/:title", (req, res) => {
-  res.send(
-    "Successful DELETE request removing movie with title " +
-      req.params.title +
-      " from favorite movie list of user " +
-      req.params.userid
+app.delete("/users/:Username/Movies/:MovieID", (req, res) => {
+  Users.findOneAndUpdate(
+    { Username: req.params.Username },
+    {
+      $pull: { FavoriteMovies: req.params.MovieID },
+    },
+    { new: true }, // This line makes sure that the updated document is returned
+    (err, updatedUser) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+      } else {
+        res.json(updatedUser);
+      }
+    }
   );
 });
 
