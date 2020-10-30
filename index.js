@@ -66,10 +66,20 @@ app.get("/movies/:Title", (req, res) => {
 });
 
 // Get data about a phase by title
-app.get("/movies/phase/:phase", (req, res) => {
-  res.send(
-    "Successful GET request returning data on phase: " + req.params.phase
-  );
+app.get("/movies/phase/:Title", (req, res) => {
+  Movies.findOne({ Title: req.params.Title })
+    .then((movie) => {
+      res.json(
+        "Phase: " +
+          movie.Phase.Name +
+          ". Description: " +
+          movie.Phase.Description
+      );
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
 });
 
 // Get data about a director by name
