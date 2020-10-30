@@ -120,12 +120,26 @@ app.get("/users/:Username", (req, res) => {
 });
 
 // Put updates to user information
-app.put("/users/:userid/:username", (req, res) => {
-  res.send(
-    "Successful PUT request updating user information username to " +
-      req.params.username +
-      " for user " +
-      req.params.userid
+app.put("/users/:Username", (req, res) => {
+  Users.findOneAndUpdate(
+    { Username: req.params.Username },
+    {
+      $set: {
+        Username: req.body.Username,
+        Password: req.body.Password,
+        Email: req.body.Email,
+        Birthday: req.body.Birthday,
+      },
+    },
+    { new: true }, // This line makes sure that the updated document is returned
+    (err, updatedUser) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+      } else {
+        res.json(updatedUser);
+      }
+    }
   );
 });
 
