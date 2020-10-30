@@ -44,8 +44,8 @@ app.get("/", (req, res) => {
 // Get a list of data about all movies
 app.get("/movies", (req, res) => {
   Movies.find()
-    .then((users) => {
-      res.status(201).json(users);
+    .then((movies) => {
+      res.status(201).json(movies);
     })
     .catch((err) => {
       console.error(err);
@@ -54,10 +54,15 @@ app.get("/movies", (req, res) => {
 });
 
 // Get data about a single movie, by title
-app.get("/movies/:title", (req, res) => {
-  res.send(
-    "Successful GET request returning data on movie title: " + req.params.title
-  );
+app.get("/movies/:Title", (req, res) => {
+  Movies.findOne({ Title: req.params.Title })
+    .then((movie) => {
+      res.json(movie);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
 });
 
 // Get data about a phase by title
