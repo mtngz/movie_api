@@ -148,7 +148,7 @@ app.post("/users/:Username/Movies/:MovieID", (req, res) => {
   Users.findOneAndUpdate(
     { Username: req.params.Username },
     {
-      $push: { FavoriteMovies: req.params.MovieID },
+      $push: { Favorites: req.params.MovieID },
     },
     { new: true }, // This line makes sure that the updated document is returned
     (err, updatedUser) => {
@@ -167,7 +167,7 @@ app.delete("/users/:Username/Movies/:MovieID", (req, res) => {
   Users.findOneAndUpdate(
     { Username: req.params.Username },
     {
-      $pull: { FavoriteMovies: req.params.MovieID },
+      $pull: { Favorites: req.params.MovieID },
     },
     { new: true }, // This line makes sure that the updated document is returned
     (err, updatedUser) => {
