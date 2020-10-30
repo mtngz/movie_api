@@ -43,7 +43,14 @@ app.get("/", (req, res) => {
 
 // Get a list of data about all movies
 app.get("/movies", (req, res) => {
-  res.send("Successful GET request returning data on all movies");
+  Movies.find()
+    .then((users) => {
+      res.status(201).json(users);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
 });
 
 // Get data about a single movie, by title
