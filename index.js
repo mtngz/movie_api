@@ -83,10 +83,25 @@ app.get("/movies/phase/:Title", (req, res) => {
 });
 
 // Get data about a director by name
-app.get("/movies/directors/:name", (req, res) => {
-  res.send(
-    "Successful GET request returning data on director: " + req.params.name
-  );
+app.get("/movies/directors/:Name", (req, res) => {
+  Movies.findOne({ "Director.Name": req.params.Name })
+    .then((movie) => {
+      res.json(
+        "Name: " +
+          movie.Director.Name +
+          ". Bio: " +
+          movie.Director.Bio +
+          " Birth: " +
+          movie.Director.Birth +
+          ". Death: " +
+          movie.Director.Death +
+          "."
+      );
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
 });
 
 // Post new user registration
