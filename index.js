@@ -143,7 +143,7 @@ app.put("/users/:Username", (req, res) => {
   );
 });
 
-// Put new movie to user list of favorite movies
+// Post new movie to user list of favorite movies
 app.post("/users/:Username/Movies/:MovieID", (req, res) => {
   Users.findOneAndUpdate(
     { Username: req.params.Username },
