@@ -66,7 +66,7 @@ app.get("/movies/:Title", (req, res) => {
 });
 
 // Get data about a phase by title
-app.get("/movies/phase/:Title", (req, res) => {
+app.get("/movies/phases/:Title", (req, res) => {
   Movies.findOne({ Title: req.params.Title })
     .then((movie) => {
       res.json(
