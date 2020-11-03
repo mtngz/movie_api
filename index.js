@@ -37,6 +37,9 @@ app.use((err, req, res, next) => {
 
 let auth = require("./auth.js")(app); // import auth; has to be placed AFTER bodyParser middleware function "app.use(bodyParser.json();"
 
+const passport = require("passport");
+require("./passport");
+
 // GET requests
 
 app.get("/", (req, res) => {
