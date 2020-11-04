@@ -85,14 +85,14 @@
       </tr>
       <tr>
         <td>Add a movie to the user's favorites</td>
-        <td>/users/[Username]/Movies/[MovieID]</td>
+        <td>/users/[Username]/Favorites/[MovieID]</td>
         <td>PUT</td>
         <td>None</td>
         <td>A JSON object holding data about the user that was updated, including an _id and favorites.<br><br>Example:<br>{<br>_id: ObjectID("5f... ...a3"),<br>Username: "dummy",<br>Email: "dummy@test.com",<br>Password: "test",<br>Birthday: ISODate("1990-01-01T00:00:00Z"),<br>Favorites: ["4e... ...6c"],<br>}</td>
       </tr>
       <tr>
         <td>Delete a movie from the user's favorites</td>
-        <td>/users/[Username]/Movies/[MovieID]</td>
+        <td>/users/[Username]/Favorites/[MovieID]</td>
         <td>DELETE</td>
         <td>None</td>
         <td>A JSON object holding data about the user that was updated, including an _id and favorites.<br><br>Example:<br>{<br>_id: ObjectID("5f... ...a3"),<br>Username: "dummy",<br>Email: "dummy@test.com",<br>Password: "test",<br>Birthday: ISODate("1990-01-01T00:00:00Z"),<br>Favorites: [],<br>}</td>
