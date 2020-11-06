@@ -6,7 +6,7 @@ const passport = require("passport"),
 // define Users
 let Users = Models.User,
   JWTStrategy = passportJWT.Strategy,
-  ExtractJWT = passportJWT.ExtractJWT;
+  ExtractJWT = passportJWT.ExtractJwt;
 
 // Local Strategy
 passport.use(
