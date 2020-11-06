@@ -4,6 +4,9 @@ const express = require("express"),
   Models = require("./models.js"),
   bodyParser = require("body-parser"),
   methodOverride = require("method-override");
+
+const { check, validation } = require("express-validator");
+
 const app = express(),
   Movies = Models.Movie,
   Users = Models.User;
