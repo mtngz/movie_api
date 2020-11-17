@@ -5,7 +5,7 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   methodOverride = require("method-override");
 
-const { check, validation } = require("express-validator");
+const { check, validationResult } = require("express-validator");
 
 const app = express(),
   Movies = Models.Movie,
