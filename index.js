@@ -21,7 +21,7 @@ mongoose.connect("mongodb://localhost:27017/myFlixDB", {
 */
 
 // heroku
-mongoose.connect("process.env.CONNECTION_URI", {
+mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
