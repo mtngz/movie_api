@@ -60,6 +60,7 @@ let allowedOrigins = ["http://localhost"];
 app.use(
   cors({
     origin: (origin, callback) => {
+      console.log(origin, allowedOrigins.indexOf(origin) === -1);
       if (!origin) return callback(null, true);
       if (allowedOrigins.indexOf(origin) === -1) {
         // If a specific origin isn’t found on the list of allowed origins
