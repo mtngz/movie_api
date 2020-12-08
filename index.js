@@ -51,7 +51,7 @@ let auth = require("./auth.js")(app); // import auth; has to be placed AFTER bod
 
 const passport = require("passport");
 require("./passport");
-
+/*
 // CORS
 const cors = require("cors");
 
@@ -73,7 +73,7 @@ app.use(
     },
   })
 );
-
+*/
 // GET requests
 
 app.get("/", (req, res) => {
