@@ -55,7 +55,10 @@ require("./passport");
 // CORS
 const cors = require("cors");
 
-let allowedOrigins = ["http://localhost:1234"];
+let allowedOrigins = [
+  "http://localhost:1234",
+  "https://marvelix.herokuapp.com",
+];
 
 app.use(
   cors({
