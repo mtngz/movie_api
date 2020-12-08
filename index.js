@@ -47,8 +47,6 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
-let auth = require("./auth.js")(app); // import auth; has to be placed AFTER bodyParser middleware function "app.use(bodyParser.json();"
-
 const passport = require("passport");
 require("./passport");
 
@@ -76,6 +74,8 @@ app.use(
     },
   })
 );
+
+let auth = require("./auth.js")(app); // import auth; has to be placed AFTER bodyParser middleware function "app.use(bodyParser.json();"
 
 // GET requests
 
