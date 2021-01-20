@@ -211,6 +211,8 @@ app.post(
   }
 );
 
+/*
+// Disable "Get all Users" and "Get a user by username"
 // Get all Users
 app.get(
   "/users",
@@ -242,6 +244,7 @@ app.get(
       });
   }
 );
+*/
 
 // Put updates to user information
 app.put(
