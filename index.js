@@ -56,6 +56,7 @@ const cors = require("cors");
 let allowedOrigins = [
   "http://localhost:1234",
   "https://marvelix.herokuapp.com",
+  "http://localhost:4200",
 ];
 
 app.use(
