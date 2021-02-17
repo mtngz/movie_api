@@ -229,6 +229,7 @@ app.get(
       });
   }
 );
+*/
 
 // Get a user by username
 app.get(
@@ -245,7 +246,6 @@ app.get(
       });
   }
 );
-*/
 
 // Put updates to user information
 app.put(
