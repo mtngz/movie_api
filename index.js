@@ -57,6 +57,7 @@ let allowedOrigins = [
   "http://localhost:1234",
   "https://marvelix.herokuapp.com",
   "http://localhost:4200",
+  "https://mtngz.github.io",
 ];
 
 app.use(
