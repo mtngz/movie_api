@@ -60,6 +60,9 @@ let allowedOrigins = [
   "https://mtngz.github.io",
 ];
 
+/**
+ * CORS blocks requests from origins not listed in 'allowedOrigins'
+ */
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -77,15 +80,26 @@ app.use(
   })
 );
 
+/**
+ * imports auth.js containing api call to login endpoint and authentication
+ */
 let auth = require("./auth.js")(app); // import auth; has to be placed AFTER bodyParser middleware function "app.use(bodyParser.json();"
 
 // GET requests
 
+/**
+ * API call to homepage
+ * here forwarded to documentation.html
+ */
 app.get("/", (req, res) => {
-  res.send("Welcome to the movie app!");
+  res.sendFile(path.resolve("./public/documentation.html"));
 });
 
 // Get a list of data about all movies
+/**
+ * API call to endpoint /movies
+ * to GET a JSON object holding data about all movies
+ */
 app.get(
   "/movies",
   passport.authenticate("jwt", { session: false }),
@@ -102,6 +116,10 @@ app.get(
 );
 
 // Get data about a single movie, by title
+/**
+ * API call to endpoint /movies/:Title
+ * to GET a JSON object holding data about a single movie
+ */
 app.get(
   "/movies/:Title",
   passport.authenticate("jwt", { session: false }),
@@ -118,6 +136,10 @@ app.get(
 );
 
 // Get data about a phase by title
+/**
+ * API call to endpoint /movies/phases/:Title
+ * to GET a JSON object holding data about a phase
+ */
 app.get(
   "/movies/phases/:Title",
   passport.authenticate("jwt", { session: false }),
@@ -139,6 +161,10 @@ app.get(
 );
 
 // Get data about a director by name
+/**
+ * API call to endpoint /movies/directors/:Name
+ * to GET a JSON object holding data about a phase
+ */
 app.get(
   "/movies/directors/:Name",
   passport.authenticate("jwt", { session: false }),
@@ -165,6 +191,16 @@ app.get(
 );
 
 // Post new user registration
+/**
+ * API call to endpoint /users
+ * to create (POST) a new user
+ *
+ * @param {string} Username - name chosen by user
+ * @param {string} Password - alpanumeric password, hashed in DB
+ * @param {string} Email - user's e-mail
+ * @param {string} Birthday - user's birthday, saved as ISO-Date
+ * @returns {object} user
+ */
 app.post(
   "/users",
   // Validation logic here for request (express-validation as middleware)
@@ -233,6 +269,10 @@ app.get(
 */
 
 // Get a user by username
+/**
+ * API call to endpoint /users/:Username
+ * to GET a JSON object holding data about a single user
+ */
 app.get(
   "/users/:Username",
   passport.authenticate("jwt", { session: false }),
@@ -249,6 +289,16 @@ app.get(
 );
 
 // Put updates to user information
+/**
+ * API call to endpoint /users
+ * to update (PUT) an existing user
+ *
+ * @param {string} Username - name chosen by user
+ * @param {string} Password - alpanumeric password, hashed in DB
+ * @param {string} Email - user's e-mail
+ * @param {string} Birthday - user's birthday, saved as ISO-Date
+ * @returns {object} updatedUser
+ */
 app.put(
   "/users/:Username",
   passport.authenticate("jwt", { session: false }),
@@ -278,6 +328,14 @@ app.put(
 );
 
 // Post new movie to user list of favorite movies
+/**
+ * API call to endpoint /users/:Username/Favorites/:MovieID
+ * to POST a movie ID to a user's favorites
+ *
+ * @param {string} Username - username of current user
+ * @param {ObjectID} MovieID - ID of the movie to be added to user's favorites
+ * @returns {object} updatedUser
+ */
 app.post(
   "/users/:Username/Favorites/:MovieID",
   passport.authenticate("jwt", { session: false }),
@@ -301,6 +359,14 @@ app.post(
 );
 
 // Delete a movie from list of user's favorite movies
+/**
+ * API call to endpoint /users/:Username/Favorites/:MovieID
+ * to DELETE a movie ID from a user's favorites
+ *
+ * @param {string} Username - username of current user
+ * @param {ObjectID} MovieID - ID of the movie to be deleted from user's favorites
+ * @returns {object} updatedUser
+ */
 app.delete(
   "/users/:Username/Favorites/:MovieID",
   passport.authenticate("jwt", { session: false }),
@@ -324,6 +390,10 @@ app.delete(
 );
 
 // Deletes a user from registration database
+/**
+ * API call to endpoint /users/:Username
+ * to DELETE a user (profile) form the database
+ */
 app.delete(
   "/users/:Username",
   passport.authenticate("jwt", { session: false }),

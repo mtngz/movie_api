@@ -16,7 +16,7 @@
     <p>
       To build the server-side component of a “movies” web application. The web
       application will provide users with access to information about different
-      movies, directors, and genres. Users will be able to sign up, update their
+      movies, directors, and phases. Users will be able to sign up, update their
       personal information, and create a list of their favorite movies.
     </p>
     <table>
@@ -39,7 +39,7 @@
         <td>/movies/[Title]</td>
         <td>GET</td>
         <td>None</td>
-        <td>A JSON object holding data about a single movie, containing title, description, phase, director, image URL.<br><br>Example:<br>{<br>Title: "Iron Man",<br>Description: "Iron Man is a 2008 American superhero film based on the Marvel Comics character.",<br>Director: {<br>dirname: "John Favreau",<br>Bio: "Jonathan Favreau is an American actor, director, producer, and screenwriter.",<br>Born: "1966",<br>Died: ""<br>},<br>Phase: {<br>Name: "One",<br>Description: "Phase One of the Marvel Cinematic Universe (MCU) is a series of American superhero films produced by Marvel Studios based on characters that appear in publications by Marvel Comics. The phase began in 2008 with the release of Iron Man and concluded in 2012 with the release of Marvel's The Avengers."<br>},<br>"ImagePath": "ironman.png",<br>"Featured": true<br>}</td>
+        <td>A JSON object holding data about a single movie, containing title, description, phase, director, image URL.<br><br>Example:<br>{<br>Title: "Iron Man",<br>Description: "Iron Man is a 2008 American superhero film based on the Marvel Comics character.",<br>Director: {<br>Name: "John Favreau",<br>Bio: "Jonathan Favreau is an American actor, director, producer, and screenwriter.",<br>Born: "1966",<br>Death: ""<br>},<br>Phase: {<br>Name: "One",<br>Description: "Phase One of the Marvel Cinematic Universe (MCU) is a series of American superhero films produced by Marvel Studios based on characters that appear in publications by Marvel Comics. The phase began in 2008 with the release of Iron Man and concluded in 2012 with the release of Marvel's The Avengers."<br>},<br>ImagePath: "https://upload.wikimedia.org/wikipedia/en/0/00/Iron_Man_poster.jpg",<br>Release: ISODate("2008-05-02T00:00:00.000+00:00"),<br>Featured: false<br>}</td>
       </tr>
       <tr>
         <td>Get data about the phase by title; use %20 for spaces</td>
@@ -53,14 +53,14 @@
         <td>/movies/directors/[Name]</td>
         <td>GET</td>
         <td>None</td>
-        <td>A JSON object holding data about a director, containing name, bio, birth year, death year.<br><br>Example:<br>{<br>Director: {<br>Name: "John Favreau",<br>Bio: "Jonathan Favreau is an American actor, director, producer, and screenwriter.",<br>Born: "1966",<br>Died: ""<br>}<br>}</td>
+        <td>A JSON object holding data about a director, containing name, bio, birth year, death year.<br><br>Example:<br>{<br>Director: {<br>Name: "John Favreau",<br>Bio: "Jonathan Favreau is an American actor, director, producer, and screenwriter.",<br>Born: "1966",<br>Death: ""<br>}<br>}</td>
       </tr>
       <tr>
         <td>Add new user</td>
         <td>/users</td>
         <td>POST</td>
-        <td>A JSON object holding data about the user to add, structured like:<br>{<br>Username: "dummy",<br>Email: "dummy@test.com",<br>Password: "test",<br>Birthday: "01/01/90",<br>}</td>
-        <td>A JSON object holding data about the user that was added, including an _id and favorites.<br><br>Example:<br>{<br>_id: ObjectID("5f... ...a3"),<br>Username: "dummy",<br>Email: "dummy@test.com",<br>Password: "test",<br>Birthday: "01/01/90",<br>Favorites: [],<br>}</td>
+        <td>A JSON object holding data about the user to add, structured like:<br>{<br>Username: "dummy1",<br>Email: "dummy@test.com",<br>Password: "test1",<br>Birthday: "01/01/1900",<br>}</td>
+        <td>A JSON object holding data about the user that was added, including an _id and favorites.<br><br>Example:<br>{<br>_id: ObjectID("5f... ...a3"),<br>Username: "dummy1",<br>Email: "dummy@test.com",<br>Password: "test1",<br>Birthday: ISODate("1900-01-01T00:00:00.000+00:00"),<br>Favorites: [],<br>}</td>
       </tr>
       <!--
       <tr>
@@ -76,28 +76,28 @@
         <td>/users/[Username]</td>
         <td>GET</td>
         <td>None</td>
-        <td>A JSON object holding data about the single user, including an _id and favorites.<br><br>Example:<br>{<br>_id: ObjectID("5f... ...a3"),<br>Username: "dummy",<br>Email: "dummy@test.com",<br>Password: "test",<br>Birthday: ISODate("1990-01-01T00:00:00Z"),<br>Favorites: [],<br>}</td>
+        <td>A JSON object holding data about the single user, including an _id and favorites.<br><br>Example:<br>{<br>_id: ObjectID("5f... ...a3"),<br>Username: "dummy1",<br>Email: "dummy@test.com",<br>Password: "test1",<br>Birthday: ISODate("1900-01-01T00:00:00.000+00:00"),<br>Favorites: [],<br>}</td>
       </tr>
       <tr>
         <td>Update the info of a single user</td>
         <td>/users/[Username]</td>
         <td>PUT</td>
-        <td>A JSON object holding data about the user to update, structured like:<br>{<br>Username: "dummyUPDATE",<br>Email: "dummyUPDATE@test.com",<br>Password: "testUPDATE",<br>Birthday: "02/01/90",<br>}</td>
-        <td>A JSON object holding data about the user that was updated, including an _id and favorites.<br><br>Example:<br>{<br>_id: ObjectID("5f... ...a3"),<br>Username: "dummyUPDATE",<br>Email: "dummyUPDATE@test.com",<br>Password: "testUPDATE",<br>Birthday: ISODate("1990-01-02T00:00:00Z"),<br>Favorites: [],<br>}</td>
+        <td>A JSON object holding data about the user to update, structured like:<br>{<br>Username: "dummy2",<br>Email: "dummy2@test.com",<br>Password: "test2",<br>Birthday: "02/01/1900",<br>}</td>
+        <td>A JSON object holding data about the user that was updated, including an _id and favorites.<br><br>Example:<br>{<br>_id: ObjectID("5f... ...a3"),<br>Username: "dummy2",<br>Email: "dummy2@test.com",<br>Password: "test2",<br>Birthday: ISODate("1900-01-02T00:00:00.000+00:00"),<br>Favorites: [],<br>}</td>
       </tr>
       <tr>
         <td>Add a movie to the user's favorites</td>
         <td>/users/[Username]/Favorites/[MovieID]</td>
         <td>PUT</td>
         <td>None</td>
-        <td>A JSON object holding data about the user that was updated, including an _id and favorites.<br><br>Example:<br>{<br>_id: ObjectID("5f... ...a3"),<br>Username: "dummy",<br>Email: "dummy@test.com",<br>Password: "test",<br>Birthday: ISODate("1990-01-01T00:00:00Z"),<br>Favorites: ["4e... ...6c"],<br>}</td>
+        <td>A JSON object holding data about the user that was updated, including an _id and favorites.<br><br>Example:<br>{<br>_id: ObjectID("5f... ...a3"),<br>Username: "dummy1",<br>Email: "dummy@test.com",<br>Password: "test1",<br>Birthday: ISODate("1900-01-01T00:00:00.000+00:00"),<br>Favorites: ["4e... ...6c"],<br>}</td>
       </tr>
       <tr>
         <td>Delete a movie from the user's favorites</td>
         <td>/users/[Username]/Favorites/[MovieID]</td>
         <td>DELETE</td>
         <td>None</td>
-        <td>A JSON object holding data about the user that was updated, including an _id and favorites.<br><br>Example:<br>{<br>_id: ObjectID("5f... ...a3"),<br>Username: "dummy",<br>Email: "dummy@test.com",<br>Password: "test",<br>Birthday: ISODate("1990-01-01T00:00:00Z"),<br>Favorites: [],<br>}</td>
+        <td>A JSON object holding data about the user that was updated, including an _id and favorites.<br><br>Example:<br>{<br>_id: ObjectID("5f... ...a3"),<br>Username: "dummy1",<br>Email: "dummy@test.com",<br>Password: "test1",<br>Birthday: ISODate("1900-01-01T00:00:00.000+00:00"),<br>Favorites: [],<br>}</td>
       </tr>
       <tr>
         <td>Delete a user from the database</td>
