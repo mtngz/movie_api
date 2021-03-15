@@ -59,6 +59,7 @@ let allowedOrigins = [
   "https://marvelix.herokuapp.com",
   "http://localhost:4200",
   "https://mtngz.github.io",
+  "https://mean-marvelix.netlify.app",
 ];
 
 /**
