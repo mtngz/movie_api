@@ -6,6 +6,7 @@ const express = require("express"),
   methodOverride = require("method-override");
 
 const { check, validationResult } = require("express-validator");
+const path = require("path");
 
 const app = express(),
   Movies = Models.Movie,
