@@ -29,6 +29,6 @@ This project is a REST API that interacts with a MongoDB database. It is used in
 
 ## Client Applications Using this API
 
-#### [myFlix React App]()
+#### [myFlix React App](https://mtngz.github.io/myflix-react-client/)
 
-#### [myFlix Angular App](https://mtngz.github.io/myFlix-Angular-client/welcome)
+#### [myFlix Angular App](https://mean-marvelix.netlify.app/)
