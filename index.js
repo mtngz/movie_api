@@ -61,7 +61,7 @@ let allowedOrigins = [
   "https://mtngz.github.io",
   "https://mean-marvelix.netlify.app",
   "http://localhost:3000",
-  "https://mern-marvelix.netlify.app/",
+  "https://mern-marvelix.netlify.app",
 ];
 
 /**
